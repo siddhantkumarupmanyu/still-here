@@ -1,0 +1,12 @@
+=> User Clicks Play -> User Clicks on End Button -> Score Page with Zero score
+
+- User Clicks Play -> User plays two rounds
+                        -> User clicks right answer Twice -> Score Page with 2 Score 
+                        -> User clicks one right one wrong -> Score Page with 1 Score
+
+- User Clicks Play -> User plays four rounds
+                        1. user clicks wrong answer
+                        2. user clicks skip
+                        3. user clicks right answer
+                        4. user clicks end
+                        -> score page with 1 score
