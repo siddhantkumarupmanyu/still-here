@@ -1,20 +1,14 @@
-beforeAll(async () => {
-  await page.goto("http://localhost:3030/test.html", { waitUntil: 'domcontentloaded' });
-});
+import { Driver } from "./driver";
 
-describe('Test header and title of the page', () => {
-  test('Title of the page', async () => {
-    const title: string = await page.title();
-    expect(title).toBe('Test Document');
-  });
-});
-
-describe('Test Document', () => {
-  beforeAll(async () => {
-    await page.goto('http://localhost:3030/test.html');
-  });
-
-  it('should be titled "Test Document"', async () => {
-    await expect(page.title()).resolves.toMatch('Test Document');
-  });
+test("Zero score without Playing", async () => {    
+    let driver = new Driver("http://localhost:3030/index.html");
+    await driver.connect();
+    await driver.isStartingPage();
+    await driver.pageHasPlayButton();
+    await driver.clickOnPlayButton();
+    await driver.isQuestionsPage();
+    await driver.pageHasEndButton();
+    await driver.clickOnEndButton();
+    await driver.isScorePage();
+    await driver.containsScore(0);
 });

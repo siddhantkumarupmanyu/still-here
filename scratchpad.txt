@@ -1,4 +1,5 @@
 => User Clicks Play -> User Clicks on End Button -> Score Page with Zero score
+    (Zero Score without playing)
 
 - User Clicks Play -> User plays two rounds
                         -> User clicks right answer Twice -> Score Page with 2 Score 
@@ -10,3 +11,15 @@
                         3. user clicks right answer
                         4. user clicks end
                         -> score page with 1 score
+
+
+
+=========================================
+
+-make Zero score without Playing test more clear
+
+
+-make useful test for isStartingPage, isQuestionPage, isScorePage
+
+-extract pageHasPlayButton asserts ; Code duplication ;
+-refactor driver class
