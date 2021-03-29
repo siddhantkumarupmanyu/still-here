@@ -1,27 +1,19 @@
 import { ElementHandle } from "puppeteer";
 
 export class Driver {
-    url: string;
-
-    constructor(url: string) {
-        this.url = url;
-    }
-
-    async connect() {
-        await page.goto(this.url, { waitUntil: 'domcontentloaded' });
+    async goto(url: string) {
+        await page.goto(url, { waitUntil: 'domcontentloaded' });
     }
 
     async isStartingPage() {
-        let mainElement = await this.getMainContainer();
-        expect(mainElement).not.toBeNull();
+        await this.pageShouldHavePlayButton();
     }
 
-    async pageHasPlayButton() {
+    private async pageShouldHavePlayButton() {
         let mainElement = await this.getMainContainer();
-        expect(await mainElement.evaluate((node: HTMLElement) => node.children.length)).toBe(1);
+        await this.assertChildCount(mainElement, 1);
 
-        expect(await mainElement.evaluate((node: HTMLElement) => node.children[0].tagName)).toBe('BUTTON');
-        expect(await mainElement.evaluate((node: HTMLElement) => node.children[0].textContent)).toBe("Play");
+        await this.assertElement(mainElement, 0, 'BUTTON', "Play");
     }
 
     async clickOnPlayButton() {
@@ -32,16 +24,14 @@ export class Driver {
     }
 
     async isQuestionsPage() {
-        let mainElement = await this.getMainContainer();
-        expect(mainElement).not.toBeNull();
+        await this.pageShouldHaveEndButton();
     }
 
-    async pageHasEndButton() {
+    private async pageShouldHaveEndButton() {
         let mainElement = await this.getMainContainer();
-        expect(await mainElement.evaluate((node: HTMLElement) => node.children.length)).toBe(1);
+        await this.assertChildCount(mainElement, 1);
 
-        expect(await mainElement.evaluate((node: HTMLElement) => node.children[0].tagName)).toBe('BUTTON');
-        expect(await mainElement.evaluate((node: HTMLElement) => node.children[0].textContent)).toBe("End");
+        await this.assertElement(mainElement, 0, 'BUTTON', "End");
     }
 
     async clickOnEndButton() {
@@ -51,20 +41,36 @@ export class Driver {
         await endButton.click();
     }
 
-    async isScorePage() {
-        let mainElement = await this.getMainContainer();
-        expect(mainElement).not.toBeNull();
+    async isScorePageWithScore(score: number) {
+        await this.pageHaveScore(score);
     }
 
-    async containsScore(score: number) {
+    private async pageHaveScore(score: number) {
         let mainElement = await this.getMainContainer();
-        expect(await mainElement.evaluate((node: HTMLElement) => node.children.length)).toBe(1);
+        await this.assertChildCount(mainElement, 1);
 
-        expect(await mainElement.evaluate((node: HTMLElement) => node.children[0].tagName)).toBe('P');
-        expect(await mainElement.evaluate((node: HTMLElement) => node.children[0].textContent)).toBe(`Score ${0}`);
+        await this.assertElement(mainElement, 0, 'P', `Score ${score}`);
     }
 
     private async getMainContainer() {
         return await page.$('#main') as ElementHandle;
+    }
+
+    private async assertChildCount(parent: ElementHandle, expectedCount: number) {
+        const actualCount = await parent.evaluate((node: HTMLElement) => node.children.length);
+        expect(actualCount).toBe(expectedCount);
+    }
+
+    private async assertElement(parent: ElementHandle, position: number, expectedTag: string, expectedText: string) {
+        const actualTag = await parent.evaluate(function (node: HTMLElement, pos: number) {
+            return node.children[pos].tagName
+        }, position);
+
+        const actualText = await parent.evaluate(function (node: HTMLElement, pos: number) {
+            return node.children[pos].textContent
+        }, position);
+
+        expect(actualTag).toBe(expectedTag);
+        expect(actualText).toBe(expectedText);
     }
 }

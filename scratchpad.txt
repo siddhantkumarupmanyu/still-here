@@ -16,10 +16,4 @@
 
 =========================================
 
--make Zero score without Playing test more clear
-
-
--make useful test for isStartingPage, isQuestionPage, isScorePage
-
--extract pageHasPlayButton asserts ; Code duplication ;
--refactor driver class
+remove duplication in assertElement
