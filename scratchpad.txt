@@ -1,5 +1,7 @@
-=> User Clicks Play -> User Clicks on End Button -> Score Page with Zero score
-    (Zero Score without playing)
+--- User Clicks Play -> User Clicks on End Button -> Score Page with Zero score
+    (Zero Score without playing)--- DONE
+
+- User Clicks Play -> User clicks skip -> user clicks end -> Score page with zero Score
 
 - User Clicks Play -> User plays two rounds
                         -> User clicks right answer Twice -> Score Page with 2 Score 
@@ -17,3 +19,5 @@
 =========================================
 
 remove duplication in assertElement
+
+remove duplication in clickingOnButtons
