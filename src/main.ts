@@ -1,6 +1,6 @@
 import { Templates } from "./Templates";
 
-function buttonClick(type: string) {
+export function buttonClick(type: string) {
     let mainContainer = document.getElementById("main") as HTMLElement;
 
     if (type === "play") {
@@ -10,8 +10,4 @@ function buttonClick(type: string) {
         mainContainer.innerHTML = Templates.scorePage();
     }
 
-}
-
-export function clickMain2(name: string) {
-    console.log(name);
 }

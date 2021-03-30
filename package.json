@@ -27,14 +27,14 @@
     "build:src": "tsc --project tsconfig.src.json",
     "build:unit": "tsc --project tsconfig.unit-test.json",
     "build:end": "tsc --project tsconfig.end-test.json",
+    "bundle": "yarn browserify ./build/src/main.js --s myBundle -o ./build/src/bundle.js",
+    "deploy": "yarn build:src && yarn bundle",
     "run:unit": "yarn jest --config=unit-test.jest.config.js",
     "run:end": "yarn jest --config=end-test.jest.config.js",
     "run:server": "yarn http-server build/src -a localhost -p 4444",
     "test:unit": "yarn clean:src-unit && yarn build:unit && yarn run:unit",
-    "test:end": "yarn clean:src-end && yarn build:src && yarn build:end && yarn run:end",
+    "test:end": "yarn clean:src-end && yarn deploy && yarn build:end && yarn run:end",
     "test": "yarn test:unit",
-    "end": "yarn test:end",
-    "bundle": "yarn browserify ./build/src/main.js --s myBundle -o ./build/src/bundle.js",
-    "deploy": "yarn build:src && yarn bundle"
+    "end": "yarn test:end"
   }
 }
