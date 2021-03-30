@@ -6,6 +6,9 @@ export function buttonClick(type: string) {
     if (type === "play") {
         mainContainer.innerHTML = Templates.quizPage();
     }
+    else if (type === "skip") {
+        mainContainer.innerHTML = Templates.quizPage();
+    }
     else if (type === "end") {
         mainContainer.innerHTML = Templates.scorePage();
     }

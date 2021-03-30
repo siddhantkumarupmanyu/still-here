@@ -25,18 +25,18 @@ export class Driver {
 
     async isQuizPage() {
         let mainElement = await this.getMainContainer();
-        await this.assertChildCount(mainElement, 1);
+        await this.assertChildCount(mainElement, 2);
 
-        // await this.assertElement(mainElement, 0, 'BUTTON', "Skip");
         await this.assertElement(mainElement, 0, 'BUTTON', "End");
+        await this.assertElement(mainElement, 1, 'BUTTON', "Skip");
     }
 
-    // async clickOnSkipButton() {
-    //     let mainElement = await this.getMainContainer();
+    async clickOnSkipButton() {
+        let mainElement = await this.getMainContainer();
 
-    //     let skipButton = await mainElement.evaluateHandle((node: HTMLElement) => node.children[0]) as ElementHandle;
-    //     await skipButton.click();
-    // }
+        let skipButton = await mainElement.evaluateHandle((node: HTMLElement) => node.children[1]) as ElementHandle;
+        await skipButton.click();
+    }
 
     async clickOnEndButton() {
         let mainElement = await this.getMainContainer();

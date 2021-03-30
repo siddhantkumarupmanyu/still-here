@@ -21,3 +21,6 @@
 remove duplication in assertElement
 
 remove duplication in clickingOnButtons
+
+
+refactor Driver class into smaller class
