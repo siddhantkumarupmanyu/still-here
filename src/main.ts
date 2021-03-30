@@ -1,4 +1,4 @@
-import { Templates } from "./Templates.js";
+import { Templates } from "./Templates";
 
 function buttonClick(type: string) {
     let mainContainer = document.getElementById("main") as HTMLElement;
@@ -12,8 +12,6 @@ function buttonClick(type: string) {
 
 }
 
-const main = document.querySelector("#main") as HTMLElement;
-const button = main.children[0];
-button.addEventListener('click', function () {
-    buttonClick("play");
-});
+export function clickMain2(name: string) {
+    console.log(name);
+}
