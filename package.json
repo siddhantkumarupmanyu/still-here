@@ -34,7 +34,8 @@
     "run:server": "yarn http-server build/src -a localhost -p 4444",
     "test:unit": "yarn clean:src-unit && yarn build:unit && yarn run:unit",
     "test:end": "yarn clean:src-end && yarn deploy && yarn build:end && yarn run:end",
-    "test": "yarn test:unit",
-    "end": "yarn test:end"
+    "unit": "yarn test:unit",
+    "end": "yarn test:end",
+    "test": "yarn unit && yarn end"
   }
 }

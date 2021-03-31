@@ -3,7 +3,7 @@ import { ChildAsserter } from "./ChildAsserter";
 
 export class Driver {
 
-    mainContainer!: ElementHandle<Element>;
+    private mainContainer!: ElementHandle<Element>;
 
     async goto(url: string) {
         await page.goto(url, { waitUntil: 'domcontentloaded' });
