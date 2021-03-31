@@ -7,7 +7,11 @@ export class Templates {
     }
 
     static quizPage(): string {
-        const template: string = this.createButton("end", "End") + this.createButton("skip", "Skip");
+        const template =
+            `<p>question</p>` +
+            this.createButton("1", "Option1") + this.createButton("1", "Option2") +
+            this.createButton("1", "Option3") + this.createButton("1", "Option4") +
+            this.createButton("end", "End") + this.createButton("skip", "Skip");
         return template;
     }
 
