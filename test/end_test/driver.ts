@@ -1,80 +1,68 @@
 import { ElementHandle } from "puppeteer";
+import { ChildAsserter } from "./ChildAsserter";
 
 export class Driver {
+
+    mainContainer!: ElementHandle<Element>;
+
     async goto(url: string) {
         await page.goto(url, { waitUntil: 'domcontentloaded' });
+        this.mainContainer = await this.getMainContainer();
     }
 
     async isStartingPage() {
+        await ChildAsserter.assertChildCount(this.mainContainer, 1);
+
         await this.pageShouldHavePlayButton();
     }
 
     private async pageShouldHavePlayButton() {
-        let mainElement = await this.getMainContainer();
-        await this.assertChildCount(mainElement, 1);
-
-        await this.assertElement(mainElement, 0, 'BUTTON', "Play");
+        await ChildAsserter.assertElement(this.mainContainer, 0, 'BUTTON', "Play");
     }
 
     async clickOnPlayButton() {
-        let mainElement = await this.getMainContainer();
-
-        let playButton = await mainElement.evaluateHandle((node: HTMLElement) => node.children[0]) as ElementHandle;
+        const playButton = await this.getChild(0);
         await playButton.click();
     }
 
     async isQuizPage() {
-        let mainElement = await this.getMainContainer();
-        await this.assertChildCount(mainElement, 2);
+        await ChildAsserter.assertChildCount(this.mainContainer, 2);
 
-        await this.assertElement(mainElement, 0, 'BUTTON', "End");
-        await this.assertElement(mainElement, 1, 'BUTTON', "Skip");
+        await this.pageShouldHaveEndAndSkip();
+    }
+
+    private async pageShouldHaveEndAndSkip() {
+        await ChildAsserter.assertElement(this.mainContainer, 0, 'BUTTON', "End");
+        await ChildAsserter.assertElement(this.mainContainer, 1, 'BUTTON', "Skip");
     }
 
     async clickOnSkipButton() {
-        let mainElement = await this.getMainContainer();
-
-        let skipButton = await mainElement.evaluateHandle((node: HTMLElement) => node.children[1]) as ElementHandle;
+        const skipButton = await this.getChild(1);
         await skipButton.click();
     }
 
     async clickOnEndButton() {
-        let mainElement = await this.getMainContainer();
-
-        let endButton = await mainElement.evaluateHandle((node: HTMLElement) => node.children[0]) as ElementHandle;
+        const endButton = await this.getChild(0);
         await endButton.click();
     }
 
     async isScorePageWithScore(score: number) {
+        await ChildAsserter.assertChildCount(this.mainContainer, 1);
+
         await this.pageHaveScore(score);
     }
 
     private async pageHaveScore(score: number) {
-        let mainElement = await this.getMainContainer();
-        await this.assertChildCount(mainElement, 1);
-
-        await this.assertElement(mainElement, 0, 'P', `Score ${score}`);
+        await ChildAsserter.assertElement(this.mainContainer, 0, 'P', `Score ${score}`);
     }
 
     private async getMainContainer() {
         return await page.$('#main') as ElementHandle;
     }
 
-    private async assertChildCount(parent: ElementHandle, expectedCount: number) {
-        const actualCount = await parent.evaluate((node: HTMLElement) => node.children.length);
-        expect(actualCount).toBe(expectedCount);
-    }
-
-    private async assertElement(parent: ElementHandle, position: number, expectedTag: string, expectedText: string) {
-        const actualTag = await parent.evaluate(function (node: HTMLElement, pos: number) {
-            return node.children[pos].tagName
-        }, position);
-
-        const actualText = await parent.evaluate(function (node: HTMLElement, pos: number) {
-            return node.children[pos].textContent
-        }, position);
-
-        expect(actualTag).toBe(expectedTag);
-        expect(actualText).toBe(expectedText);
+    private async getChild(position: number) {
+        return await this.mainContainer.evaluateHandle(function (node: HTMLElement, pos: number) {
+            return node.children[pos];
+        }, position) as ElementHandle;
     }
 }
