@@ -1,12 +1,12 @@
 export class Quiz {
     readonly question: string
     readonly options: Array<string>
-    readonly answerKey: number
+    readonly answer: number
 
-    constructor(question: string, options: Array<string>, answerKey: number) {
+    constructor(question: string, options: Array<string>, answer: number) {
         this.question = question;
         this.options = options;
-        this.answerKey = answerKey;
+        this.answer = answer;
     }
 
     equals(obj: Quiz): boolean {

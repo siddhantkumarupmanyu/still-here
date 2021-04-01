@@ -7,6 +7,16 @@ export class BarsDatabase {
         this.barsObject = barsObj
     }
 
+    getKeyCount() {
+        return Object.keys(this.barsObject).length;
+    }
+
+    getValueCount(keyIndex: number) {
+        const key = this.getKeyAt(keyIndex) as keyof Object;
+        const valueArray = this.barsObject[key] as unknown as Array<string>;
+        return valueArray.length;
+    }
+
     getKeyAt(index: number) {
         const key = Object.keys(this.barsObject)[index];
         if (key === undefined) {

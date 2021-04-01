@@ -19,9 +19,6 @@
 
 =========================================
 
-integrate real bars in Bars Database or it takes a json file from which it gets Bars
-    file which can be mocked in the tests
-
 remove duplication in assertElement
 
 remove duplication in clickingOnButtons
@@ -32,4 +29,4 @@ refactor Driver class into smaller class
 I could use something like; IDK lets wait if i really need this
 let mainPageAsserter = PageAsserter.for(mainContainer);
 // and calling it like 
-mainPageAsserter.assertElement(1, 'BUTTON', "Play");
+mainPageAsserter.assertElement(1, 'BUTTON', "Play"); 

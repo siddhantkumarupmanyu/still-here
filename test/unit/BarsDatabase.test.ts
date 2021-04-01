@@ -15,6 +15,11 @@ test("return a key and value at valid position", () => {
     expect(value).toBe("key1-value4");
 });
 
+test("key and value count", () => {
+    expect(database.getKeyCount()).toBe(5);
+    expect(database.getValueCount(2)).toBe(5);
+});
+
 // https://stackoverflow.com/questions/46042613/how-to-test-the-type-of-a-thrown-exception-in-jest
 
 test("exception at invalid position", () => {
