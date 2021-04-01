@@ -19,6 +19,9 @@
 
 =========================================
 
+integrate real bars in Bars Database or it takes a json file from which it gets Bars
+    file which can be mocked in the tests
+
 remove duplication in assertElement
 
 remove duplication in clickingOnButtons

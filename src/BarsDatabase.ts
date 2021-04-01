@@ -1,31 +1,32 @@
 
 export class BarsDatabase {
 
-    private static map = new Map([
-        ["key0", ["key0-value0", "key0-value1", "key0-value2", "key0-value3", "key0-value4"]],
-        ["key1", ["key1-value0", "key1-value1", "key1-value2", "key1-value3", "key1-value4"]],
-        ["key2", ["key2-value0", "key2-value1", "key2-value2", "key2-value3", "key2-value4"]],
-        ["key3", ["key3-value0", "key3-value1", "key3-value2", "key3-value3", "key3-value4"]],
-        ["key4", ["key4-value0", "key4-value1", "key4-value2", "key4-value3", "key4-value4"]]
-    ]);
+    private barsObject: Object;
 
-    private constructor() { }
+    constructor(barsObj: Object) {
+        this.barsObject = barsObj
+    }
 
-    static getKeyAt(position: number) {
-        const key = Array.from(this.map.keys())[position];
+    getKeyAt(index: number) {
+        const key = Object.keys(this.barsObject)[index];
         if (key === undefined) {
             throw new RangeError("Key Index out of Bound");
         }
         return key;
     }
 
-    static getValueAt(keyPosition: number, valuePosition: number) {
-        const key = this.getKeyAt(keyPosition);
-        const valueArray = this.map.get(key) as Array<string>;
-        const value = valueArray[valuePosition];
+    // https://stackoverflow.com/questions/62438346/how-to-dynamically-access-object-property-in-typescript
+
+    getValueAt(keyIndex: number, valueIndex: number) {
+        const key = this.getKeyAt(keyIndex) as keyof Object;
+        const valueArray = this.barsObject[key] as unknown as Array<string>;
+        const value = valueArray[valueIndex];
         if (value === undefined) {
             throw new RangeError("Value Index out of Bound");
         }
         return value;
     }
 }
+
+// additional notes:
+// https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-1.html#keyof-and-lookup-types 

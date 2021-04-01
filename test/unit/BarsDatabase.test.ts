@@ -1,21 +1,27 @@
 import { BarsDatabase } from "../../src/BarsDatabase";
+import { testBarsObj } from "./testBars";
 
+let database: BarsDatabase;
+
+beforeEach(() => {
+    database = new BarsDatabase(testBarsObj);
+});
 
 test("return a key and value at valid position", () => {
-    const keyName = BarsDatabase.getKeyAt(4);
+    const keyName = database.getKeyAt(4);
     expect(keyName).toBe("key4");
 
-    const value = BarsDatabase.getValueAt(1, 4);
+    const value = database.getValueAt(1, 4);
     expect(value).toBe("key1-value4");
 });
 
 // https://stackoverflow.com/questions/46042613/how-to-test-the-type-of-a-thrown-exception-in-jest
 
 test("exception at invalid position", () => {
-    expect(() => { BarsDatabase.getKeyAt(-1) }).toThrow(RangeError);
-    expect(() => { BarsDatabase.getKeyAt(-1) }).toThrow("Key Index out of Bound");
+    expect(() => { database.getKeyAt(-1) }).toThrow(RangeError);
+    expect(() => { database.getKeyAt(-1) }).toThrow("Key Index out of Bound");
 
-    expect(() => { BarsDatabase.getValueAt(2, 5) }).toThrow(RangeError);
-    expect(() => { BarsDatabase.getValueAt(2, 5) }).toThrow("Value Index out of Bound");
+    expect(() => { database.getValueAt(2, 5) }).toThrow(RangeError);
+    expect(() => { database.getValueAt(2, 5) }).toThrow("Value Index out of Bound");
 });
 
