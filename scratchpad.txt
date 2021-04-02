@@ -19,6 +19,9 @@
 
 =========================================
 
+
+QuizGenerator.test.ts can be a good integration test then a unit test with many mocks; IDK
+
 remove duplication in assertElement
 
 remove duplication in clickingOnButtons

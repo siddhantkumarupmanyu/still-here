@@ -6,32 +6,34 @@ const ZERO = 0;
 export class QuizGenerator {
 
     private database: BarsDatabase
-    private numberGenerator: (lowerBound: number, upperBound: number) => number
+    private numberGenerator: (upperBound: number) => number
 
-    constructor(barsDatabase: BarsDatabase, numberGenerator: (lowerBound: number, upperBound: number) => number) {
+    constructor(barsDatabase: BarsDatabase, numberGenerator: (upperBound: number) => number) {
         this.database = barsDatabase;
         this.numberGenerator = numberGenerator;
     }
 
     // Todo clean this up
     generate() {
-        const answerKeyIndex = this.numberGenerator(ZERO, this.database.getKeyCount());
-        const questionIndex = this.numberGenerator(ZERO, this.database.getValueCount(answerKeyIndex));
+        const answerKeyIndex = this.numberGenerator(this.database.getKeyCount());
+        const questionIndex = this.numberGenerator(this.database.getValueCount(answerKeyIndex));
 
         const question = this.database.getValueAt(answerKeyIndex, questionIndex);
 
-        // const key = this.database.getKeyAt(keyIndex);
-
-        const option1Index = this.numberGenerator(ZERO, this.database.getKeyCount());
-        const option2Index = this.numberGenerator(ZERO, this.database.getKeyCount());
-        const option3Index = this.numberGenerator(ZERO, this.database.getKeyCount());
-
         const answerKey = this.database.getKeyAt(answerKeyIndex);
-        const option1 = this.database.getKeyAt(option1Index);
-        const option2 = this.database.getKeyAt(option2Index);
-        const option3 = this.database.getKeyAt(option3Index);
 
-        let options = [option1, option2, option3, answerKey];
+        let options = [answerKey];
+
+        let i = 0;
+        while (i < 3) {
+            const optionIndex = this.numberGenerator(this.database.getKeyCount());
+            const option = this.database.getKeyAt(optionIndex);
+
+            if (!options.includes(option)) {
+                options.push(option);
+                i++;
+            }
+        }
 
         this.shuffle(options);
 
@@ -55,3 +57,16 @@ export class QuizGenerator {
 
     // https://stackoverflow.com/a/6274381
 }
+
+// let i = 0;
+// while (i < 3) {
+//     const optionIndex = this.numberGenerator(ZERO, this.database.getKeyCount());
+//     const option = this.database.getKeyAt(optionIndex);
+
+//     if (!options.includes(option)) {
+//         options.push(option);
+//         i++;
+//     }
+
+//     console.log(options + "\n");
+// }

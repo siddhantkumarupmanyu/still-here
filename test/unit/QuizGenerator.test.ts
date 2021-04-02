@@ -27,57 +27,83 @@ let quizGenerator: QuizGenerator
 const mockedModel = BarsDatabaseModel as jest.Mocked<typeof BarsDatabaseModel>;
 const barsDatabaseMock = mockedModel.BarsDatabase;
 
+let testNumberGeneratorCount = 0;
+
 beforeEach(() => {
     const barsDatabase = new BarsDatabaseModel.BarsDatabase(emptyObj);
     quizGenerator = new QuizGenerator(barsDatabase, mockNumberGenerator);
+
+    testNumberGeneratorCount = 0;
 });
 
+function numberGeneratorTestImplementation() {
+    mockNumberGenerator.mockImplementation(function (upperBound: number) {
+        return ++testNumberGeneratorCount;
+    });
+}
+
+function getKeyAtTestImplementation() {
+    mockGetKeyAt.mockImplementation(function (index: number) {
+        return index.toString();
+    });
+}
+
 afterEach(() => {
-    jest.resetAllMocks();
+    mockGetKeyCount.mockRestore();
+    mockGetValueCount.mockRestore();
+    mockNumberGenerator.mockRestore();
+    mockGetKeyAt.mockRestore();
+    mockGetValueAt.mockRestore();
 });
 
 test("calls numberGenerator", () => {
+    numberGeneratorTestImplementation();
+    getKeyAtTestImplementation();
+
     mockGetKeyCount.mockReturnValue(4);
     mockGetValueCount.mockReturnValue(3);
 
     quizGenerator.generate();
 
     expect(mockNumberGenerator).toHaveBeenCalledTimes(5);
-    expect(mockNumberGenerator).toHaveBeenNthCalledWith(1, 0, 4);
-    expect(mockNumberGenerator).toHaveBeenNthCalledWith(2, 0, 3);
+    expect(mockNumberGenerator).toHaveBeenNthCalledWith(1, 4);
+    expect(mockNumberGenerator).toHaveBeenNthCalledWith(2, 3);
 });
 
-// test("options should be unique", () => {
-//     mockNumberGenerator.mockReturnValueOnce(5).mockReturnValueOnce(2);
-
-//     // mockNumberGenerator
-//     //     .mockReturnValueOnce(3)
-//     //     .mockReturnValueOnce(4)
-//     //     .mockReturnValueOnce(3)
-//     //     .mockReturnValueOnce(2)
-//     //     .mockReturnValueOnce(1);
-
-//     // const quiz = quizGenerator.generate();
-
-//     expect(mockNumberGenerator).toHaveBeenCalledTimes(7);
-// });
-
 test("generates question", () => {
-    mockNumberGenerator.mockReturnValueOnce(2).mockReturnValueOnce(2);
+    numberGeneratorTestImplementation();
+    getKeyAtTestImplementation();
     mockGetValueAt.mockReturnValueOnce("key2-value2");
 
     const quiz = quizGenerator.generate();
 
     expect(quiz.question).toBe("key2-value2");
     expect(mockGetValueAt).toHaveBeenCalledTimes(1);
-    expect(mockGetValueAt).toHaveBeenCalledWith(2, 2);
+    expect(mockGetValueAt).toHaveBeenCalledWith(1, 2);
+});
+
+test("generates options", () => {
+    mockNumberGenerator.mockReturnValueOnce(5).mockReturnValueOnce(2);
+
+    getKeyAtTestImplementation();
+
+    mockNumberGenerator
+        .mockReturnValueOnce(3)
+        .mockReturnValueOnce(4)
+        .mockReturnValueOnce(3)
+        .mockReturnValueOnce(2)
+        .mockReturnValueOnce(1);
+
+    const quiz = quizGenerator.generate();
+
+    expect(hasDuplicates(quiz.options)).toBe(false);
+
+    expect(mockNumberGenerator).toHaveBeenCalledTimes(6);
 });
 
 test("generate answer", () => {
-    mockNumberGenerator.mockReturnValueOnce(2).mockReturnValueOnce(2);
-    mockGetKeyCount.mockReturnValue(4);
-
     mockGetValueAt.mockReturnValueOnce("key2-value2");
+
     mockGetKeyAt
         .mockReturnValueOnce("key2")
         .mockReturnValueOnce("2")
@@ -90,6 +116,13 @@ test("generate answer", () => {
     expect(quiz.options).toContain("key2");
     expect(quiz.answer).toBe(quiz.options.indexOf("key2"));
 });
+
+
+function hasDuplicates(array: Array<string>): any {
+    // https://stackoverflow.com/a/7376645
+    return (new Set(array)).size !== array.length;
+}
+
 
 // https://stackoverflow.com/questions/53502054/mock-imported-class-in-typescript-with-jest
 // https://stackoverflow.com/a/58034052
