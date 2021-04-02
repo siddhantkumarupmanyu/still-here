@@ -1,6 +1,6 @@
 
 export const stillHereBarsObj = {
-    "intro": [
+    "Intro": [
         `Yeh hai gehra dard, ye hai karwa such\nDeal with the devil, ye hai mera karz
         Li thi zimmedari, Ye hai mera farz`,
 
@@ -96,20 +96,149 @@ export const stillHereBarsObj = {
         `Mujhe sab dikhe clear
         That’s why i’m Still Here`
     ],
-    "key1": [
-        "key1-value0",
-        "key1-value1",
-        "key1-value2",
-        "key1-value3",
-        "key1-value4"
+
+    "What's My Name": [
+        `Don’t come around me, no way (no)
+        Meri gang saari saath, we don’t play (no)`,
+
+        `Hype thodi bahut inko de do
+        You don’t really want war, better lay low`,
+
+        `Rehn de, Tu Rehn de
+        Ye batein kare gang ke
+        But asliyat me naram
+        Lagale marham ya band-aid`,
+
+        `No Handshakes for these damn snakes
+        Mere sheher me bande
+        Stick to that iron
+        Jaise pancakes`,
+
+        `Who’s that?
+        The king, bеtter crown me`,
+
+        `Har line mеt-a-4, jaise rap me hai boundry
+        Bola me hoo king, beta crown me
+        Rap me tum junior, lagte ho Robert Downey`,
+
+        `Lit aaya, me karoonga spit fire
+        Ye karenge retire, I’m taking this shit higher, Wow`,
+
+        `Chillaya par tujh me na skill paaya
+        Ink zaya kar ke bhi jo na likh paaya wo`,
+
+        `Skill hai sick, Jaante ab ill hai krish
+        Jeeb meri clip, iss double barrel se bhi mile kiss`,
+
+        `Inke lips chodu neele jaise mile crips
+        Jaldi faadu rapper jaise birthday pe mile gift`,
+
+        `Me hoo real ye to feel kare saare
+        Toh KR$NA bhi jub padhare ab ye kneel kare saare`,
+
+        `Cheen-na chah rahe, ye to cheel bane saale
+        Karta hoon me stand out, mass appeal kare saare`,
+
+        `Kehna jo kehna hai kehne do
+        Me sicker jaise weak liver pe liquor sipper`,
+
+        `No fikar or panic mode
+        Hannibal, khaoo rappers jaise cannibal`,
+
+        `Karoonga damage, lagoo me savage
+        We banish ametures`,
+
+        `Who’s that?
+        The microphone wrecker`,
+
+        `Bhai se kaun behtar?
+        Laaya cyclone weather`,
+
+        `Click clack
+        Lyrical rap - aaya yahan kaun le kar?`,
+
+        `I am known better
+        Leave the mic alone bredder`,
+
+        `Aaj kal ye light weights kare mera time waste
+        Mind pe but shit might get ugly jaise blind dates`,
+
+        `Grind dekh, when I rhyme, badta crime rate
+        Ye hai dollar sign, har line kare define great`
+
     ],
-    "key2": [
-        "key2-value0",
-        "key2-value1",
-        "key2-value2",
-        "key2-value3",
-        "key2-value4"
+
+    "Roll Up": [
+        `When I Roll Up
+        Saare Launde Phenke Gang Signs
+        Everybody Knows`,
+
+        `When I Roll Up
+        Sheeshe Neeche Poore Night
+        Main To Ride Karun Slow`,
+
+        `Roll Up No Defeat Aaya Jeet Ke
+        Street Se Seekh Ke Iraade Mere Dheet The`,
+
+        `Deep The Vaaste Mere Bhi Is Sangeet Se
+        Atlantis Hai Yeh Rap Gehre Naate Mere Beat Se`,
+
+        `Cheethde Kiye Inke Liye Nahi Ehsan Maine
+        Bolte Lyrics Rakh Simple Thoda Aaram Lele`,
+
+        `Aaj Unhi Lyrics Se Banai Hai Pehchaan Maine
+        Daaruwala Nahi Par Chhoda Inhe Bezaan Maine`,
+
+        `Aah! Tanne Samajh Mein Na Aaye Kya
+        Baal Baal Bache Jaise Yahan Koyi Naayi Tha`,
+
+        `Chhup Ke Chale Chaal Beef Mein Kasai Ka
+        Dikhe Zara Fame Ab Banega Tu Bhi Bhai Kya`,
+
+        `Mera Daur Aaya Mood Hua Kharaab Inka
+        Hota Afsos Dekh Ke Mujhe Yahan Aaj Zinda`,
+
+        `Par Sookhi Ghaas Mein Milta Nahi Hai Khaas Tinka
+        Mujhe Chahiye Legacy Tujhe Kamana 5 Din Ka`,
+
+        `That’s The Difference Between Me And You
+        Maine Sab Banaya Khud Jaise B N Q`,
+
+        `Sath Mere Badshah Gehdiyan Poori Raat Haan
+        Dollar Sign Dikhe Zyada Jaise Dala Hai Daaka`,
+
+        `Daal Le Apni Security Guard Main Kalla
+        Kaanpad Main Dard Jaise Daadh Mein`,
+
+        `Utha Toofan Ho Jaise Registaan Mein
+        Tendulkar Sharjah 1998`,
+
+        `Wagon Ke Aage Se R Hataya Pichhe Laga G
+        Punjabi Mein C Ra Karaya Lagaa Zee`,
+
+        `Woh Chahe Mera End Mera Pichhe Laga B
+        Verse Aisi Drop Kari Maine Piche Laga Re`,
+
+        `Sab Number’on Ka Game Boy
+        Views Ko Maar Goli Aaja Tu Streams Mein`,
+
+        `Forbes Ke Mutabik One Of The Highest Paids
+        Lekin Aaj Bhi Maa C*** Ki Leta Nahi Fees Main`,
+
+        `Ae Shararat Hone Wali Hai
+        Inhein Pata Nahi Inki Kya Haalat Hone Wali Hai`,
+
+        `Nishana Mera Kabhi Chooka Nahi
+        Kr$Na Hai Sath Mein Mahabharat Hone Wali Hai`,
+
+        `Thodi Buddhi Garam Aye
+        Karwa Na Liyo Guddi Garam Aye`,
+
+        `Peeragadhi Ke Flyover Jaise High West
+        Dilli Ke Launde Hum Hain Kutti Firim Bhai`
+
     ],
+    
     "key3": [
         "key3-value0",
         "key3-value1",
