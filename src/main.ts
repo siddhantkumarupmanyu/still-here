@@ -37,5 +37,6 @@ export function buttonClick(type: string) {
 }
 
 function isOption(type: string) {
+    console.log("Option: " + type);
     return type === "1" || type === "2" || type === "3" || type === "4";
 }

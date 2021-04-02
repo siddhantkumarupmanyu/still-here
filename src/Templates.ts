@@ -11,8 +11,8 @@ export class Templates {
     static quizPage(quiz: Quiz): string {
         const template =
             `<p>${quiz.question}</p>` +
-            this.createButton("1", `${quiz.options[0]}`) + this.createButton("1", `${quiz.options[1]}`) +
-            this.createButton("1", `${quiz.options[2]}`) + this.createButton("1", `${quiz.options[3]}`) +
+            this.createButton("1", `${quiz.options[0]}`) + this.createButton("2", `${quiz.options[1]}`) +
+            this.createButton("3", `${quiz.options[2]}`) + this.createButton("4", `${quiz.options[3]}`) +
             this.createButton("end", "End") + this.createButton("skip", "Skip");
         return template;
     }
