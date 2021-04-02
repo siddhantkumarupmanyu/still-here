@@ -117,6 +117,25 @@ test("generate answer", () => {
     expect(quiz.answer).toBe(quiz.options.indexOf("key2"));
 });
 
+test("quiz should be unique", () => {
+    numberGeneratorTestImplementation();
+    getKeyAtTestImplementation();
+
+    mockGetValueAt.mockReturnValueOnce("key2-value2")
+    mockGetValueAt.mockReturnValueOnce("key2-value2")
+    mockGetValueAt.mockReturnValueOnce("key1-value3")
+
+    const quiz1 = quizGenerator.generate();
+    const quiz2 = quizGenerator.generate();
+
+    expect(quiz1.question).not.toBeUndefined();
+    expect(quiz2.question).not.toBeUndefined();
+
+    expect(quiz1.equals(quiz2)).toBe(false);
+
+    expect(mockGetValueAt).toHaveBeenCalledTimes(3);
+});
+
 
 function hasDuplicates(array: Array<string>): any {
     // https://stackoverflow.com/a/7376645

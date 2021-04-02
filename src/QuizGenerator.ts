@@ -1,20 +1,31 @@
 import { BarsDatabase } from "./BarsDatabase";
 import { Quiz } from "./Quiz";
 
-const ZERO = 0;
-
 export class QuizGenerator {
 
     private database: BarsDatabase
     private numberGenerator: (upperBound: number) => number
 
+    private quizzes: Array<Quiz>
+
     constructor(barsDatabase: BarsDatabase, numberGenerator: (upperBound: number) => number) {
         this.database = barsDatabase;
         this.numberGenerator = numberGenerator;
+        this.quizzes = [];
+    }
+
+
+    generate(): Quiz {
+        const quiz = this.newQuiz();
+        if (this.isUnique(quiz)) {
+            this.quizzes.push(quiz);
+            return quiz;
+        }
+        return this.generate();
     }
 
     // Todo clean this up
-    generate() {
+    private newQuiz() {
         const answerKeyIndex = this.numberGenerator(this.database.getKeyCount());
         const questionIndex = this.numberGenerator(this.database.getValueCount(answerKeyIndex));
 
@@ -40,10 +51,16 @@ export class QuizGenerator {
         return new Quiz(question, options, options.indexOf(answerKey));
     }
 
-    /**
-     * Shuffles array in place.
-     * @param {Array} a items An array containing the items.
-     */
+    private isUnique(newQuiz: Quiz) {
+        for (const quiz of this.quizzes) {
+            if (newQuiz.equals(quiz)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // https://stackoverflow.com/a/6274381
     private shuffle(a: Array<string>) {
         var j, x, i;
         for (i = a.length - 1; i > 0; i--) {
@@ -54,19 +71,4 @@ export class QuizGenerator {
         }
         return a;
     }
-
-    // https://stackoverflow.com/a/6274381
 }
-
-// let i = 0;
-// while (i < 3) {
-//     const optionIndex = this.numberGenerator(ZERO, this.database.getKeyCount());
-//     const option = this.database.getKeyAt(optionIndex);
-
-//     if (!options.includes(option)) {
-//         options.push(option);
-//         i++;
-//     }
-
-//     console.log(options + "\n");
-// }
