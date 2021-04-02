@@ -1,3 +1,5 @@
+import { Quiz } from "./Quiz";
+
 export class Templates {
     private constructor() {
     }
@@ -6,11 +8,11 @@ export class Templates {
         return this.createButton("play", "Play");
     }
 
-    static quizPage(): string {
+    static quizPage(quiz: Quiz): string {
         const template =
-            `<p>question</p>` +
-            this.createButton("1", "Option1") + this.createButton("1", "Option2") +
-            this.createButton("1", "Option3") + this.createButton("1", "Option4") +
+            `<p>${quiz.question}</p>` +
+            this.createButton("1", `${quiz.options[0]}`) + this.createButton("1", `${quiz.options[1]}`) +
+            this.createButton("1", `${quiz.options[2]}`) + this.createButton("1", `${quiz.options[3]}`) +
             this.createButton("end", "End") + this.createButton("skip", "Skip");
         return template;
     }

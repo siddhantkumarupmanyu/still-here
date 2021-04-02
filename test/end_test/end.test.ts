@@ -22,14 +22,14 @@ test("Zero Score with skipping", async () => {
     await driver.isScorePageWithScore(0);
 });
 
-// test("One score in two rounds", async () => {
-//     let driver = new Driver();
-//     await driver.goto("http://localhost:3030/index.html");
-//     await driver.isStartingPage();
-//     await driver.clickOnPlayButton();
-//     await driver.isQuizPage();
-//     await driver.clickOnWrongOption();
-//     await driver.clickOnRightOption();
-//     await driver.clickOnEndButton();
-//     await driver.isScorePageWithScore(1);
-// });
+test("Two score in two rounds", async () => {
+    let driver = new Driver();
+    await driver.goto("http://localhost:3030/index.html");
+    await driver.isStartingPage();
+    await driver.clickOnPlayButton();
+    await driver.isQuizPage();
+    // await driver.clickOnWrongOption();
+    await driver.clickOnRightOption();
+    await driver.clickOnEndButton();
+    // await driver.isScorePageWithScore(1);
+});
