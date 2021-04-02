@@ -31,5 +31,5 @@ test("Two score in two rounds", async () => {
     // await driver.clickOnWrongOption();
     await driver.clickOnRightOption();
     await driver.clickOnEndButton();
-    // await driver.isScorePageWithScore(1);
+    await driver.isScorePageWithScore(2);
 });

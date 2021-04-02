@@ -1,7 +1,8 @@
 
 export const stillHereBarsObj = {
     "Intro": [
-        `Yeh hai gehra dard, ye hai karwa such\nDeal with the devil, ye hai mera karz
+        `Yeh hai gehra dard, ye hai karwa such
+        Deal with the devil, ye hai mera karz
         Li thi zimmedari, Ye hai mera farz`,
 
         `Buland hain mere hausle, (haan)

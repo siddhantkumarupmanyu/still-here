@@ -17,8 +17,8 @@ export class Templates {
         return template;
     }
 
-    static scorePage(): string {
-        return `<p>Score 0</p>`;
+    static scorePage(score: number): string {
+        return `<p>Score ${score}</p>`;
     }
 
     // https://stackoverflow.com/questions/23296094
