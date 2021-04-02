@@ -19,6 +19,8 @@
 
 =========================================
 
+remove this temporary fix in main.ts; (currentQuiz.answer + 1)
+
 
 QuizGenerator.test.ts can be a good integration test then a unit test with many mocks; IDK
 

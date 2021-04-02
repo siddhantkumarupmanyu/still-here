@@ -25,6 +25,8 @@ export class Driver {
     async clickOnPlayButton() {
         const playButton = await this.getChild(0);
         await playButton.click();
+
+        await this.waitForLoading();
     }
 
     async isQuizPage() {
@@ -52,11 +54,11 @@ export class Driver {
     }
 
     async clickOnRightOption() {
-        const question = await this.getInnerText(await this.getChild(0));
+        const question = await this.getInnerTextOfChild(this.mainContainer, 0);
         const answer = this.getAnswerKey(question);
         let rightOption = -1;
         for (let i = 1; i <= 4; i++) {
-            const optionText = await this.getInnerText(await this.getChild(i));
+            const optionText = await this.getInnerTextOfChild(this.mainContainer, i);
             if (optionText === answer) {
                 rightOption = i;
             }
@@ -64,6 +66,8 @@ export class Driver {
 
         const rightOptionElement = await this.getChild(rightOption);
         rightOptionElement.click();
+
+        await this.waitForLoading();
     }
 
     private getAnswerKey(question: string) {
@@ -83,11 +87,15 @@ export class Driver {
     async clickOnSkipButton() {
         const skipButton = await this.getChild(6);
         await skipButton.click();
+
+        await this.waitForLoading();
     }
 
     async clickOnEndButton() {
         const endButton = await this.getChild(5);
         await endButton.click();
+
+        await this.waitForLoading();
     }
 
     async isScorePageWithScore(score: number) {
@@ -110,7 +118,14 @@ export class Driver {
         }, position) as ElementHandle;
     }
 
-    private async getInnerText(elementHandel: ElementHandle) {
-        return await elementHandel.evaluate((node: HTMLElement) => node.innerText);
+    private async getInnerTextOfChild(parent: ElementHandle, position: number) {
+        return await parent.evaluate((node: HTMLElement, pos: number) => {
+            let child = node.children[pos] as HTMLElement;
+            return child.innerText;
+        }, position);
+    }
+
+    private async waitForLoading() {
+        await page.waitForTimeout(10);
     }
 }

@@ -20,7 +20,7 @@ export function buttonClick(type: string) {
         mainContainer.innerHTML = Templates.quizPage(currentQuiz);
     }
     else if (isOption(type)) {
-        if (type === currentQuiz.answer.toString()) {
+        if (type === (currentQuiz.answer + 1).toString()) {
             score++;
         }
         currentQuiz = quizGenerator.generate();

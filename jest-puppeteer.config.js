@@ -2,7 +2,7 @@ module.exports = {
     launch: {
         headless: false,
         slowMo: 0,
-        devtools: false
+        devtools: false,
     },
     server: {
         command: 'yarn http-server build/src -a localhost -p 3030',
