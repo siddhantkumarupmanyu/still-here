@@ -1,3 +1,4 @@
+import { ButtonClickEvent } from "../ButtonClickEvent";
 import { Quiz } from "../Quiz";
 
 const quizString = `
@@ -13,28 +14,28 @@ const quizString = `
     </div>
     <div class="container-items">
         <div class="inner-item">
-            <button class="btn option-btn fourth">{option0}</button>
+            <button class="btn option-btn fourth" onclick="myBundle.buttonClick('${ButtonClickEvent.OPTION_0}')">{option0}</button>
         </div>
     </div>
     <div class="container-items">
         <div class="inner-item">
-            <button class="btn option-btn fourth">{option1}</button>
+            <button class="btn option-btn fourth" onclick="myBundle.buttonClick('${ButtonClickEvent.OPTION_1}')">{option1}</button>
         </div>
     </div>
     <div class="container-items">
         <div class="inner-item">
-            <button class="btn option-btn fourth">{option2}</button>
+            <button class="btn option-btn fourth" onclick="myBundle.buttonClick('${ButtonClickEvent.OPTION_2}')">{option2}</button>
         </div>
     </div>
     <div class="container-items">
         <div class="inner-item">
-            <button class="btn option-btn fourth">{option3}</button>
+            <button class="btn option-btn fourth" onclick="myBundle.buttonClick('${ButtonClickEvent.OPTION_3}')">{option3}</button>
         </div>
     </div>
     <div class="container-items">
         <div class="inner-item last-item">
-            <button class="btn fourth">End</button>
-            <button class="btn fourth">Skip</button>
+            <button class="btn fourth" onclick="myBundle.buttonClick('${ButtonClickEvent.END}')">End</button>
+            <button class="btn fourth" onclick="myBundle.buttonClick('${ButtonClickEvent.SKIP}')">Skip</button>
         </div>
     </div>
 `;

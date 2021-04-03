@@ -1,3 +1,4 @@
+import { ButtonClickEvent } from "../ButtonClickEvent";
 
 
 const scoreString = `
@@ -20,7 +21,7 @@ const scoreString = `
     </div>
     <div class="container-items">
         <div class="inner-item">
-            <button class="btn option-btn fourth">Play Again</button>
+            <button class="btn option-btn fourth" onclick="myBundle.buttonClick('${ButtonClickEvent.PLAY_AGAIN}')">Play Again</button>
         </div>
     </div>
 `;

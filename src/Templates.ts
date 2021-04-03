@@ -23,4 +23,8 @@ export class Templates {
     // myBundle: browserify bundle name
     // to change; see bundle command in package.json
 
+    /* private static createButton(type: string, text: string): string {
+        return `<button onclick="myBundle.buttonClick('${type}')">${text}</button>`;
+    } */
+
 }

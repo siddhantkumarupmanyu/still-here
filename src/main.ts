@@ -1,4 +1,5 @@
 import { BarsDatabase } from "./BarsDatabase";
+import { ButtonClickEvent } from "./ButtonClickEvent";
 import { Quiz } from "./Quiz";
 import { QuizGenerator } from "./QuizGenerator";
 import { randomNumberGenerator } from "./randomNumberGenerator";
@@ -12,31 +13,33 @@ let currentQuiz: Quiz;
 let score = 0;
 
 // TODO: remove duplicates
-export function buttonClick(type: string) {
+export function buttonClick(type: ButtonClickEvent) {
     let mainContainer = document.getElementById("main") as HTMLElement;
 
-    if (type === "play") {
+    if (type === ButtonClickEvent.PLAY) {
         currentQuiz = quizGenerator.generate();
         mainContainer.innerHTML = Templates.quizPage(currentQuiz);
     }
     else if (isOption(type)) {
-        if (type === currentQuiz.answer.toString()) {
+        if (type === currentQuiz.answer) {
             score++;
         }
         currentQuiz = quizGenerator.generate();
         mainContainer.innerHTML = Templates.quizPage(currentQuiz);
     }
-    else if (type === "skip") {
+    else if (type === ButtonClickEvent.SKIP) {
         currentQuiz = quizGenerator.generate();
         mainContainer.innerHTML = Templates.quizPage(currentQuiz);
     }
 
-    else if (type === "end") {
+    else if (type === ButtonClickEvent.END) {
         mainContainer.innerHTML = Templates.scorePage(score);
     }
 }
 
-function isOption(type: string) {
-    console.log("Option: " + type);
-    return type === "0" || type === "1" || type === "2" || type === "3";
+function isOption(type: ButtonClickEvent) {
+    return type === ButtonClickEvent.OPTION_0
+        || type === ButtonClickEvent.OPTION_1
+        || type === ButtonClickEvent.OPTION_2
+        || type === ButtonClickEvent.OPTION_3;
 }

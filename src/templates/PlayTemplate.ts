@@ -1,3 +1,4 @@
+import { ButtonClickEvent } from "../ButtonClickEvent";
 
 const playString = `
     <div class="container-items ">
@@ -8,7 +9,7 @@ const playString = `
     </div>
     <div class="container-items">
         <div class="inner-item">
-            <button class="btn option-btn fourth">Play</button>
+            <button class="btn option-btn fourth" onclick="myBundle.buttonClick('${ButtonClickEvent.PLAY}')">Play</button>
         </div>
     </div>
 `;
