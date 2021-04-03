@@ -43,6 +43,7 @@ export function templateString(quiz: Quiz) {
     let generatedString = quizString;
     generatedString = insertOptions(generatedString, quiz.options);
     generatedString = insertBars(generatedString, quiz.question);
+    return generatedString;
 }
 
 

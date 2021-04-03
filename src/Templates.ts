@@ -1,32 +1,26 @@
 import { Quiz } from "./Quiz";
+import * as PlayTemplate from "./templates/PlayTemplate";
+import * as QuizTemplate from "./templates/QuizTemplate";
+import * as ScoreTemplate from "./templates/ScoreTemplate";
 
 export class Templates {
     private constructor() {
     }
 
     static startingPage(): string {
-        return this.createButton("play", "Play");
+        return PlayTemplate.templateString();
     }
 
     static quizPage(quiz: Quiz): string {
-        const template =
-            `<p>${quiz.question}</p>` +
-            this.createButton("0", `${quiz.options[0]}`) + this.createButton("1", `${quiz.options[1]}`) +
-            this.createButton("2", `${quiz.options[2]}`) + this.createButton("3", `${quiz.options[3]}`) +
-            this.createButton("end", "End") + this.createButton("skip", "Skip");
-        return template;
+        return QuizTemplate.templateString(quiz);
     }
 
     static scorePage(score: number): string {
-        return `<p>Score ${score}</p>`;
+        return ScoreTemplate.templateString(score);
     }
 
     // https://stackoverflow.com/questions/23296094
     // myBundle: browserify bundle name
     // to change; see bundle command in package.json
-
-    private static createButton(type: string, text: string): string {
-        return `<button onclick="myBundle.buttonClick('${type}')">${text}</button>`;
-    }
 
 }
