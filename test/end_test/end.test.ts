@@ -33,5 +33,3 @@ test("One score in One rounds", async () => {
     await driver.clickOnEndButton();
     await driver.isScorePageWithScore(1);
 });
-
-    // await driver.clickOnWrongOption();

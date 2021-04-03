@@ -19,7 +19,12 @@
 
 =========================================
 
-remove this temporary fix in main.ts; (currentQuiz.answer + 1)
+flex-wrap in bars css
+
+
+code duplication in driver.ts:
+    container_item
+    inner_item 
 
 
 QuizGenerator.test.ts can be a good integration test then a unit test with many mocks; IDK
