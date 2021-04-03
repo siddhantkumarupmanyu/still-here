@@ -123,17 +123,17 @@ export class Driver {
         await this.waitForLoading();
     }
 
-    async isScorePageWithScore(score: number) {
+    async isScorePageWithScore(score: number, total: number) {
         await ChildAsserter.assertChildCount(this.mainContainer, 4);
 
-        await this.pageHaveScore(score);
+        await this.pageHaveScore(score, total);
     }
 
-    private async pageHaveScore(score: number) {
+    private async pageHaveScore(score: number, total: number) {
         const container_item = await this.getChild(this.mainContainer, 1);
         const inner_item = await this.getChild(container_item, 0);
 
-        await ChildAsserter.assertElementWithText(inner_item, 1, 'SPAN', `${score}`);
+        await ChildAsserter.assertElementWithText(inner_item, 1, 'SPAN', `${score}/${total}`);
     }
 
     async clickOnPlayAgain() {

@@ -15,16 +15,12 @@ export class Templates {
         return QuizTemplate.templateString(quiz);
     }
 
-    static scorePage(score: number): string {
-        return ScoreTemplate.templateString(score);
+    static scorePage(score: number, total: number): string {
+        return ScoreTemplate.templateString(score, total);
     }
 
     // https://stackoverflow.com/questions/23296094
     // myBundle: browserify bundle name
     // to change; see bundle command in package.json
-
-    /* private static createButton(type: string, text: string): string {
-        return `<button onclick="myBundle.buttonClick('${type}')">${text}</button>`;
-    } */
 
 }

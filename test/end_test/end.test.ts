@@ -7,7 +7,7 @@ test("Zero score without Playing", async () => {
     await driver.clickOnPlayButton();
     await driver.isQuizPage();
     await driver.clickOnEndButton();
-    await driver.isScorePageWithScore(0);
+    await driver.isScorePageWithScore(0, 0);
 });
 
 test("Zero Score with skipping", async () => {
@@ -19,7 +19,7 @@ test("Zero Score with skipping", async () => {
     await driver.clickOnSkipButton();
     await driver.isQuizPage();
     await driver.clickOnEndButton();
-    await driver.isScorePageWithScore(0);
+    await driver.isScorePageWithScore(0, 1);
 });
 
 test("One score in One rounds", async () => {
@@ -31,7 +31,7 @@ test("One score in One rounds", async () => {
     await driver.clickOnRightOption();
     await driver.isQuizPage();
     await driver.clickOnEndButton();
-    await driver.isScorePageWithScore(1);
+    await driver.isScorePageWithScore(1, 1);
 });
 
 test("Play Again", async () => {
@@ -41,7 +41,7 @@ test("Play Again", async () => {
     await driver.clickOnPlayButton();
     await driver.isQuizPage();
     await driver.clickOnEndButton();
-    await driver.isScorePageWithScore(0);
+    await driver.isScorePageWithScore(0, 0);
     await driver.clickOnPlayAgain();
     await driver.isStartingPage();
 })

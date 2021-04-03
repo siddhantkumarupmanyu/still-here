@@ -11,6 +11,7 @@ const quizGenerator = new QuizGenerator(barsDatabase, randomNumberGenerator);
 
 let currentQuiz: Quiz;
 let score = 0;
+let total = 0;
 
 // TODO: remove duplicates
 export function buttonClick(type: ButtonClickEvent) {
@@ -24,16 +25,18 @@ export function buttonClick(type: ButtonClickEvent) {
         if (getOptionFromType(type) === currentQuiz.answer) {
             score++;
         }
+        increaseTotal();
         currentQuiz = quizGenerator.generate();
         mainContainer.innerHTML = Templates.quizPage(currentQuiz);
     }
     else if (type === ButtonClickEvent.SKIP) {
+        increaseTotal();
         currentQuiz = quizGenerator.generate();
         mainContainer.innerHTML = Templates.quizPage(currentQuiz);
     }
 
     else if (type === ButtonClickEvent.END) {
-        mainContainer.innerHTML = Templates.scorePage(score);
+        mainContainer.innerHTML = Templates.scorePage(score, total);
     }
 
     else if (type === ButtonClickEvent.PLAY_AGAIN) {
@@ -51,3 +54,7 @@ function isOption(type: ButtonClickEvent) {
 function getOptionFromType(type: ButtonClickEvent) {
     return (type - 1);
 }
+function increaseTotal() {
+    total++;
+}
+

@@ -10,7 +10,7 @@ const scoreString = `
     <div class="container-items">
         <div class="inner-item score">
             <span>You Scored: </span>
-            <span style="font-size: 6rem; font-weight: bold;">{score}</span>
+            <span style="font-size: 6rem; font-weight: bold;">{score}/{total}</span>
         </div>
     </div>
         <div class="container-items ">
@@ -26,6 +26,9 @@ const scoreString = `
     </div>
 `;
 
-export function templateString(score: number) {
-    return scoreString.replace("{score}", score.toString());
+export function templateString(score: number, total: number) {
+    let generatedString = scoreString;
+    generatedString = generatedString.replace("{score}", score.toString())
+    generatedString = generatedString.replace("{total}", total.toString())
+    return generatedString;
 }
