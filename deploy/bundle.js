@@ -837,7 +837,8 @@ const scoreString = `
         <div class="container-items ">
         <div class="inner-item advice">
             <span>Listen to</span>
-            <span style="cursor:pointer; font-size: 3rem; font-weight: bold;">Still Here</span>
+            <span style="cursor:pointer; font-size: 3rem; font-weight: bold;"
+                onclick="window.open('https://krsna.bfan.link/still-here', '_blank').focus();" >Still Here</span>
         </div>
     </div>
     <div class="container-items">
