@@ -6,22 +6,13 @@ export class QuizGenerator {
     private database: BarsDatabase
     private numberGenerator: (upperBound: number) => number
 
-    private quizzes: Array<Quiz>
-
     constructor(barsDatabase: BarsDatabase, numberGenerator: (upperBound: number) => number) {
         this.database = barsDatabase;
         this.numberGenerator = numberGenerator;
-        this.quizzes = [];
     }
 
-
     generate(): Quiz {
-        const quiz = this.newQuiz();
-        if (this.isUnique(quiz)) {
-            this.quizzes.push(quiz);
-            return quiz;
-        }
-        return this.generate();
+        return this.newQuiz();
     }
 
     // Todo clean this up
@@ -29,7 +20,7 @@ export class QuizGenerator {
         const answerKeyIndex = this.numberGenerator(this.database.getKeyCount());
         const questionIndex = this.numberGenerator(this.database.getValueCount(answerKeyIndex));
 
-        const question = this.database.getValueAt(answerKeyIndex, questionIndex);
+        const question = this.database.popValueAt(answerKeyIndex, questionIndex);
 
         const answerKey = this.database.getKeyAt(answerKeyIndex);
 
@@ -49,15 +40,6 @@ export class QuizGenerator {
         this.shuffle(options);
 
         return new Quiz(question, options, options.indexOf(answerKey));
-    }
-
-    private isUnique(newQuiz: Quiz) {
-        for (const quiz of this.quizzes) {
-            if (newQuiz.equals(quiz)) {
-                return false;
-            }
-        }
-        return true;
     }
 
     // https://stackoverflow.com/a/6274381

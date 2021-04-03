@@ -2,7 +2,7 @@ import * as BarsDatabaseModel from "../../src/BarsDatabase";
 import { QuizGenerator } from "../../src/QuizGenerator";
 
 const mockGetKeyAt = jest.fn();
-const mockGetValueAt = jest.fn();
+const mockPopValueAt = jest.fn();
 const mockNumberGenerator = jest.fn();
 const mockGetKeyCount = jest.fn();
 const mockGetValueCount = jest.fn();
@@ -14,7 +14,7 @@ jest.mock('../../src/BarsDatabase', () => {
         BarsDatabase: jest.fn(() => {
             return {
                 getKeyAt: mockGetKeyAt,
-                getValueAt: mockGetValueAt,
+                popValueAt: mockPopValueAt,
                 getKeyCount: mockGetKeyCount,
                 getValueCount: mockGetValueCount
             };
@@ -53,7 +53,7 @@ afterEach(() => {
     mockGetValueCount.mockRestore();
     mockNumberGenerator.mockRestore();
     mockGetKeyAt.mockRestore();
-    mockGetValueAt.mockRestore();
+    mockPopValueAt.mockRestore();
 });
 
 test("calls numberGenerator", () => {
@@ -73,13 +73,13 @@ test("calls numberGenerator", () => {
 test("generates question", () => {
     numberGeneratorTestImplementation();
     getKeyAtTestImplementation();
-    mockGetValueAt.mockReturnValueOnce("key2-value2");
+    mockPopValueAt.mockReturnValueOnce("key2-value2");
 
     const quiz = quizGenerator.generate();
 
     expect(quiz.question).toBe("key2-value2");
-    expect(mockGetValueAt).toHaveBeenCalledTimes(1);
-    expect(mockGetValueAt).toHaveBeenCalledWith(1, 2);
+    expect(mockPopValueAt).toHaveBeenCalledTimes(1);
+    expect(mockPopValueAt).toHaveBeenCalledWith(1, 2);
 });
 
 test("generates options", () => {
@@ -102,7 +102,7 @@ test("generates options", () => {
 });
 
 test("generate answer", () => {
-    mockGetValueAt.mockReturnValueOnce("key2-value2");
+    mockPopValueAt.mockReturnValueOnce("key2-value2");
 
     mockGetKeyAt
         .mockReturnValueOnce("key2")
@@ -121,9 +121,8 @@ test("quiz should be unique", () => {
     numberGeneratorTestImplementation();
     getKeyAtTestImplementation();
 
-    mockGetValueAt.mockReturnValueOnce("key2-value2")
-    mockGetValueAt.mockReturnValueOnce("key2-value2")
-    mockGetValueAt.mockReturnValueOnce("key1-value3")
+    mockPopValueAt.mockReturnValueOnce("key2-value2")
+    mockPopValueAt.mockReturnValueOnce("key1-value3")
 
     const quiz1 = quizGenerator.generate();
     const quiz2 = quizGenerator.generate();
@@ -133,7 +132,7 @@ test("quiz should be unique", () => {
 
     expect(quiz1.equals(quiz2)).toBe(false);
 
-    expect(mockGetValueAt).toHaveBeenCalledTimes(3);
+    expect(mockPopValueAt).toHaveBeenCalledTimes(2);
 });
 
 
