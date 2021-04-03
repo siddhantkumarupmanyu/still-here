@@ -698,3 +698,15 @@ export const stillHereBarsObj = {
         Mujhe hall of flame mein`
     ]
 }
+
+export const stillHereBarsCount = 210;
+
+// for checking
+// test("", () => {
+//     const tb = new BarsDatabase(stillHereBarsObj);
+//     let count = 0;
+//     for (let i = 0; i < tb.getKeyCount(); i++) {
+//         count += tb.getValueCount(i);
+//     }
+//     console.log(count);
+// });

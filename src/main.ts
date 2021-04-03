@@ -3,7 +3,7 @@ import { ButtonClickEvent } from "./ButtonClickEvent";
 import { Quiz } from "./Quiz";
 import { QuizGenerator } from "./QuizGenerator";
 import { randomNumberGenerator } from "./randomNumberGenerator";
-import { stillHereBarsObj } from "./stillHereBars";
+import { stillHereBarsCount, stillHereBarsObj } from "./stillHereBars";
 import { Templates } from "./Templates";
 
 const barsDatabase = new BarsDatabase(stillHereBarsObj);
@@ -23,16 +23,14 @@ export function buttonClick(type: ButtonClickEvent) {
     }
     else if (isOption(type)) {
         if (getOptionFromType(type) === currentQuiz.answer) {
-            score++;
+            increaseScore();
         }
         increaseTotal();
-        currentQuiz = quizGenerator.generate();
-        mainContainer.innerHTML = Templates.quizPage(currentQuiz);
+        nextQuiz(mainContainer);
     }
     else if (type === ButtonClickEvent.SKIP) {
         increaseTotal();
-        currentQuiz = quizGenerator.generate();
-        mainContainer.innerHTML = Templates.quizPage(currentQuiz);
+        nextQuiz(mainContainer);
     }
 
     else if (type === ButtonClickEvent.END) {
@@ -42,6 +40,20 @@ export function buttonClick(type: ButtonClickEvent) {
     else if (type === ButtonClickEvent.PLAY_AGAIN) {
         window.location.reload();
     }
+}
+
+function nextQuiz(mainContainer: HTMLElement) {
+    if (questionsRemaining()) {
+        currentQuiz = quizGenerator.generate();
+        mainContainer.innerHTML = Templates.quizPage(currentQuiz);
+    }
+    else {
+        mainContainer.innerHTML = Templates.scorePage(score, total);
+    }
+}
+
+function questionsRemaining() {
+    return total !== stillHereBarsCount;
 }
 
 function isOption(type: ButtonClickEvent) {
@@ -54,7 +66,11 @@ function isOption(type: ButtonClickEvent) {
 function getOptionFromType(type: ButtonClickEvent) {
     return (type - 1);
 }
+
+function increaseScore() {
+    score++;
+}
+
 function increaseTotal() {
     total++;
 }
-
