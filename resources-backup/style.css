@@ -47,6 +47,8 @@ body{
     font-family: 'Poppins', sans-serif;
     font-size: 1.2rem;
     font-weight: normal;
+    text-align: center;
+    flex-wrap: wrap;
 }
 
 .last-item{

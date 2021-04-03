@@ -21,6 +21,8 @@
 
 flex-wrap in bars css
 
+quiz uniqueness also be achieved if we delete that entry from object;
+    for play again we just reload the page
 
 code duplication in driver.ts:
     container_item
