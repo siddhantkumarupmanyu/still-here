@@ -20,6 +20,16 @@ test("key and value count", () => {
     expect(database.getValueCount(2)).toBe(5);
 });
 
+test("get value and remove it", () => {
+    expect(database.getKeyCount()).toBe(5);
+    expect(database.getValueCount(2)).toBe(5);
+
+    const value = database.popValueAt(2, 3);
+    expect(value).toBe("key2-value3");
+
+    expect(database.getValueCount(2)).toBe(4);
+});
+
 // https://stackoverflow.com/questions/46042613/how-to-test-the-type-of-a-thrown-exception-in-jest
 
 test("exception at invalid position", () => {

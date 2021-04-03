@@ -36,6 +36,17 @@ export class BarsDatabase {
         }
         return value;
     }
+
+    popValueAt(keyIndex: number, valueIndex: number) {
+        const key = this.getKeyAt(keyIndex) as keyof Object;
+        const valueArray = this.barsObject[key] as unknown as Array<string>;
+        const value = valueArray[valueIndex];
+        if (value === undefined) {
+            throw new RangeError("Value Index out of Bound");
+        }
+        valueArray.splice(valueIndex, 1);
+        return value;
+    }
 }
 
 // additional notes:
