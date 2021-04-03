@@ -14,14 +14,14 @@ let score = 0;
 
 // TODO: remove duplicates
 export function buttonClick(type: ButtonClickEvent) {
-    let mainContainer = document.getElementById("main") as HTMLElement;
+    let mainContainer = document.getElementsByClassName("main-container")[0] as HTMLElement;
 
     if (type === ButtonClickEvent.PLAY) {
         currentQuiz = quizGenerator.generate();
         mainContainer.innerHTML = Templates.quizPage(currentQuiz);
     }
     else if (isOption(type)) {
-        if (type === currentQuiz.answer) {
+        if (getOptionFromType(type) === currentQuiz.answer) {
             score++;
         }
         currentQuiz = quizGenerator.generate();
@@ -42,4 +42,8 @@ function isOption(type: ButtonClickEvent) {
         || type === ButtonClickEvent.OPTION_1
         || type === ButtonClickEvent.OPTION_2
         || type === ButtonClickEvent.OPTION_3;
+}
+
+function getOptionFromType(type: ButtonClickEvent) {
+    return (type - 1);
 }

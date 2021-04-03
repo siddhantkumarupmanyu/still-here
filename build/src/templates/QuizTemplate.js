@@ -1,6 +1,7 @@
-import { ButtonClickEvent } from "../ButtonClickEvent";
-import { Quiz } from "../Quiz";
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.templateString = void 0;
+const ButtonClickEvent_1 = require("../ButtonClickEvent");
 const quizString = `
     <div class="container-items ">
         <div class="inner-item heading-item">
@@ -14,41 +15,39 @@ const quizString = `
     </div>
     <div class="container-items">
         <div class="inner-item">
-            <button class="btn option-btn fourth" onclick="myBundle.buttonClick(${ButtonClickEvent.OPTION_0})">{option0}</button>
+            <button class="btn option-btn fourth" onclick="myBundle.buttonClick(${ButtonClickEvent_1.ButtonClickEvent.OPTION_0})">{option0}</button>
         </div>
     </div>
     <div class="container-items">
         <div class="inner-item">
-            <button class="btn option-btn fourth" onclick="myBundle.buttonClick(${ButtonClickEvent.OPTION_1})">{option1}</button>
+            <button class="btn option-btn fourth" onclick="myBundle.buttonClick(${ButtonClickEvent_1.ButtonClickEvent.OPTION_1})">{option1}</button>
         </div>
     </div>
     <div class="container-items">
         <div class="inner-item">
-            <button class="btn option-btn fourth" onclick="myBundle.buttonClick(${ButtonClickEvent.OPTION_2})">{option2}</button>
+            <button class="btn option-btn fourth" onclick="myBundle.buttonClick(${ButtonClickEvent_1.ButtonClickEvent.OPTION_2})">{option2}</button>
         </div>
     </div>
     <div class="container-items">
         <div class="inner-item">
-            <button class="btn option-btn fourth" onclick="myBundle.buttonClick(${ButtonClickEvent.OPTION_3})">{option3}</button>
+            <button class="btn option-btn fourth" onclick="myBundle.buttonClick(${ButtonClickEvent_1.ButtonClickEvent.OPTION_3})">{option3}</button>
         </div>
     </div>
     <div class="container-items">
         <div class="inner-item last-item">
-            <button class="btn fourth" onclick="myBundle.buttonClick(${ButtonClickEvent.END})">End</button>
-            <button class="btn fourth" onclick="myBundle.buttonClick(${ButtonClickEvent.SKIP})">Skip</button>
+            <button class="btn fourth" onclick="myBundle.buttonClick(${ButtonClickEvent_1.ButtonClickEvent.END})">End</button>
+            <button class="btn fourth" onclick="myBundle.buttonClick(${ButtonClickEvent_1.ButtonClickEvent.SKIP})">Skip</button>
         </div>
     </div>
 `;
-
-export function templateString(quiz: Quiz) {
+function templateString(quiz) {
     let generatedString = quizString;
     generatedString = insertOptions(generatedString, quiz.options);
     generatedString = insertBars(generatedString, quiz.question);
     return generatedString;
 }
-
-
-function insertOptions(quizString: string, options: string[]) {
+exports.templateString = templateString;
+function insertOptions(quizString, options) {
     let generatedString = quizString;
     generatedString = generatedString.replace("{option0}", options[0]);
     generatedString = generatedString.replace("{option1}", options[1]);
@@ -56,8 +55,7 @@ function insertOptions(quizString: string, options: string[]) {
     generatedString = generatedString.replace("{option3}", options[3]);
     return generatedString;
 }
-
-function insertBars(quizString: string, question: string) {
+function insertBars(quizString, question) {
     let bars = question.split(/\n\s+/g);
     let barsHTML = "";
     for (let bar of bars) {
@@ -67,5 +65,3 @@ function insertBars(quizString: string, question: string) {
     generateString = generateString.replace("{bars}", barsHTML);
     return generateString;
 }
-// <span>Dekhe mene aate jaate bohot se (yahan),</span>
-// <span>Iss duniya se jaana anjaan, ye mera khauf hai</span>

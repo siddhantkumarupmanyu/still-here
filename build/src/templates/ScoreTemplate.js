@@ -1,6 +1,7 @@
-import { ButtonClickEvent } from "../ButtonClickEvent";
-
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.templateString = void 0;
+const ButtonClickEvent_1 = require("../ButtonClickEvent");
 const scoreString = `
     <div class="container-items ">
         <div class="inner-item score-heading">
@@ -21,11 +22,11 @@ const scoreString = `
     </div>
     <div class="container-items">
         <div class="inner-item">
-            <button class="btn option-btn fourth" onclick="myBundle.buttonClick(${ButtonClickEvent.PLAY_AGAIN})">Play Again</button>
+            <button class="btn option-btn fourth" onclick="myBundle.buttonClick(${ButtonClickEvent_1.ButtonClickEvent.PLAY_AGAIN})">Play Again</button>
         </div>
     </div>
 `;
-
-export function templateString(score: number) {
+function templateString(score) {
     return scoreString.replace("{score}", score.toString());
 }
+exports.templateString = templateString;
