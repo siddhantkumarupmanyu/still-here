@@ -124,7 +124,6 @@ export class Driver {
     }
 
     async isScorePageWithScore(score: number) {
-
         await ChildAsserter.assertChildCount(this.mainContainer, 4);
 
         await this.pageHaveScore(score);
@@ -144,7 +143,7 @@ export class Driver {
         const playAgainButton = await this.getChild(inner_item, 0);
         await playAgainButton.click();
 
-        await page.waitForTimeout(1000);
+        await this.reloadTimeout();
 
         this.mainContainer = await this.getMainContainer();
     }
@@ -168,5 +167,9 @@ export class Driver {
 
     private async waitForLoading() {
         await page.waitForTimeout(10);
+    }
+
+    private async reloadTimeout() {
+        await page.waitForTimeout(50);
     }
 }
