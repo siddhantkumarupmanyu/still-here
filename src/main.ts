@@ -20,7 +20,7 @@ export function buttonClick(type: string) {
         mainContainer.innerHTML = Templates.quizPage(currentQuiz);
     }
     else if (isOption(type)) {
-        if (type === (currentQuiz.answer + 1).toString()) {
+        if (type === currentQuiz.answer.toString()) {
             score++;
         }
         currentQuiz = quizGenerator.generate();
@@ -38,5 +38,5 @@ export function buttonClick(type: string) {
 
 function isOption(type: string) {
     console.log("Option: " + type);
-    return type === "1" || type === "2" || type === "3" || type === "4";
+    return type === "0" || type === "1" || type === "2" || type === "3";
 }
