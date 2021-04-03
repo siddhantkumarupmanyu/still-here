@@ -137,6 +137,18 @@ export class Driver {
         await ChildAsserter.assertElementWithText(inner_item, 1, 'SPAN', `${score}`);
     }
 
+    async clickOnPlayAgain() {
+        const container_item = await this.getChild(this.mainContainer, 3);
+        const inner_item = await this.getChild(container_item, 0);
+
+        const playAgainButton = await this.getChild(inner_item, 0);
+        await playAgainButton.click();
+
+        await page.waitForTimeout(1000);
+
+        this.mainContainer = await this.getMainContainer();
+    }
+
     private async getMainContainer() {
         return await page.$('.main-container') as ElementHandle;
     }

@@ -33,3 +33,15 @@ test("One score in One rounds", async () => {
     await driver.clickOnEndButton();
     await driver.isScorePageWithScore(1);
 });
+
+test("Play Again", async () => {
+    let driver = new Driver();
+    await driver.goto("http://localhost:3030/index.html");
+    await driver.isStartingPage();
+    await driver.clickOnPlayButton();
+    await driver.isQuizPage();
+    await driver.clickOnEndButton();
+    await driver.isScorePageWithScore(0);
+    await driver.clickOnPlayAgain();
+    await driver.isStartingPage();
+})

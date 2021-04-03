@@ -35,6 +35,10 @@ export function buttonClick(type: ButtonClickEvent) {
     else if (type === ButtonClickEvent.END) {
         mainContainer.innerHTML = Templates.scorePage(score);
     }
+
+    else if (type === ButtonClickEvent.PLAY_AGAIN) {
+        window.location.reload();
+    }
 }
 
 function isOption(type: ButtonClickEvent) {
