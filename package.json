@@ -39,6 +39,6 @@
     "test": "yarn unit && yarn end",
     "clean:gh": "rm -rf ./deploy && mkdir ./deploy",
     "cp:gh": "cp ./build/src/index.html ./build/src/bundle.js ./build/src/style.css ./build/src/mainstyle.css ./build/src/score.css ./deploy",
-    "deploy:gh": "yarn deploy && yarn clean:gh && yarn cp:gh"
+    "deploy:gh": "yarn deploy && yarn clean:gh && yarn cp:gh && cp ./deploy/* ./"
   }
 }
